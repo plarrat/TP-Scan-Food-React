@@ -1,4 +1,4 @@
-export default function NavBar({search, setSearch}){
+export default function NavBar({search, setSearch, selectGrade, setSelectGrade}){
     return(
         <nav className="navbar navbar-light bg-light">
           <div className="container-fluid">
@@ -10,7 +10,17 @@ export default function NavBar({search, setSearch}){
                       placeholder="Rechercher un produit" 
                       onChange={e=>setSearch(e.target.value)}
               />
-              <button className="btn btn-outline-success" type="submit">Search</button>
+              <select  className="form-control me-4"
+                value={selectGrade} 
+                onChange={(e)=>setSelectGrade(e.target.value)}
+              >
+                <option value="">Tous les Grades</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+              </select>
             </form>
           </div>
         </nav>

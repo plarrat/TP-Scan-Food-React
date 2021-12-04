@@ -1,5 +1,13 @@
-export default function productSearch(search, products){
-    let res = products.filter(productData =>{
+export default function productSearch(search, selectGrade, products){
+    let res = [...products];
+    if(selectGrade != ""){
+        res = res.filter(product=>{
+            if(selectGrade.toLowerCase() === product.product.nutriscore_grade) return product
+        });
+    }
+    
+    
+    res = res.filter(productData =>{
         let searchMini = search.toLowerCase();
         let product = productData.product;
         

@@ -6,10 +6,12 @@ import NavBar from './../../components/NavBar/NavBar'
 import InputEan from './../../components/InputEan/InputEan'
 import Product from './../../components/Product/Product'
 import productSearch from './../../utils/ProductSearch'
+import {Badge} from 'react-bootstrap';
 
 function App() {
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
+  const [selectGrade, setSelectGrade] = useState("");
   const [show, setShow] = useState(false);
 
   const closeModal = () => setShow(false);
@@ -43,13 +45,18 @@ function App() {
     openModal();
   }
 
-    let listeProducts = productSearch(search, products).map(product=><Product key={product.product._id} product={product} deleteProduct={deleteProduct} />);
+    let listeProducts = productSearch(search, selectGrade, products).map(product=><Product key={product.product._id} product={product} deleteProduct={deleteProduct} />);
   return (
     
     <div className="App">
       
       <header className="App-header">
-        <NavBar search={search} setSearch={setSearch} />
+        <NavBar 
+          search={search} 
+          setSearch={setSearch} 
+          setSelectGrade={setSelectGrade} 
+          selectGrade={selectGrade} 
+        />
       </header>
 
       <main>
@@ -57,7 +64,7 @@ function App() {
         <section className="container mt-5">
           <section className="row">
             <section className="col-md-6">
-              <h1>Saisissez un EAN</h1>
+              <h1>Scannez le code barre ou saissez un EAN</h1>
               <hr />
               
               <InputEan 
@@ -68,9 +75,21 @@ function App() {
                 closeModal={closeModal}
               />
               
+              { products.length > 0 &&
+                <div className="alert alert-light" role="alert">
+                  Nombre de produits : &nbsp; 
+                  <Badge pill bg="secondary">
+                    {productSearch(search, selectGrade, products).length} 
+                  </Badge>
+                    &nbsp; / &nbsp; 
+                  <Badge pill bg="info">
+                    {products.length}
+                  </Badge>
+                </div>
+              }
             </section>
 
-            <div id="reader" width="600px"></div>
+            
             
             <section className="row">
               {listeProducts}

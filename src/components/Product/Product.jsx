@@ -19,7 +19,7 @@ cursor:pointer;
 
 export default function Product({product, deleteProduct}){
     return(
-        <article className="col-md-3 mt-5">
+        <article className="col-md-4 mt-5">
             <div className="card" >
                 <Badge pill bg="success" className="nutriscore-badge">{product.product.nutriscore_score}</Badge>
                 <h5 className="card-header"><i className="bi bi-upc"></i> <em>({product.code})</em></h5>
