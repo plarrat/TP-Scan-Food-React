@@ -12,6 +12,10 @@ Positionnez vous dans le répertoire de l'application puis lancez :
 
 `npm install`
 
+Une fois les dépendances installées pour lancer l'application, lancez la commande : 
+
+`npm start`
+
 ## Utilisation
 
 Saissez les 13 chiffres sous le code barre d'un produit **alimentaire** puis cliquez sur le bouton +
